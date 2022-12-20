@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet/less" href="style.less">
+    <script src="https://cdn.jsdelivr.net/npm/less"></script>
+
+
+    </style>
+</head>
+
+<body>
+    <aside>
+        <header>
+            <div id="logo">
+                tudu.
+            </div>
+        </header>
+        <nav>
+            <div id="nav-pages">
+                <div>
+                    <ul class="nav">
+                        <li class="selected">tuday</li>
+                        <!--class selected for current page-->
+                        <li>all tudus</li>
+                        <li>history</li>
+                    </ul>
+                </div>
+
+                <div id="nav-counts">
+                    <ul class="nav counts">
+                        <li>4</li>
+                        <li>67</li>
+                    </ul>
+                </div>
+            </div>
+            <div id="nav-tags">
+                <ul class="nav tags">
+                    <li class="critical">critical</li>
+                    <li>regular</li>
+                    <li>personal</li>
+                </ul>
+            </div>
+            <div id="nav-edit-tags">
+                <a href="">edit tags</a>
+            </div>
+        </nav>
+    </aside>
+
+    <article>
+        <header>
+            DODAJ MNIE
+        </header>
+
+            <div id="dashboardContainer">
+    
+                <div id="dashboardHeader">
+                    <h3 class="pageName">tuday ∙</h3>
+                    <span class="todayDate">2 Dec 2022</span>
+                </div>
+    
+                <div id="overdueTasks">
+                    <div class="taskListHeader">
+                        <h4>overdues</h4>
+                        <button class="sort" data-sort="task-due hidden" type="button"></button>
+                    </div>
+                    <div id="overdueTaskList">
+                        
+                        <ul class="list taskList">
+                            <li class="critical-task">
+                                <div class="task-content">
+                                    <input type="checkbox" class="task-status">
+                                    <span class="task-title">Odebrać Bubę</span>
+                                    <span class="after-title-bullet">∙</span>
+                                    <span class="task-due hidden"></span>
+                                    <span class="task-due visible">yesterday</span>
+                                </div>
+                                <div class="task-tags">
+                                    <span class="task-tags">
+                                        <span class="task-tag">personal</span>
+                                        <span class="task-tag">critical</span>
+                                    </span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="task-content">
+                                    <input type="checkbox" class="task-status">
+                                    <span class="task-title">Odebrać Bubę</span>
+                                    <span class="after-title-bullet">∙</span>
+                                    <span class="task-due hidden"></span>
+                                    <span class="task-due visible">yesterday</span>
+                                </div>
+                                <div class="task-tags">
+                                    <span class="task-tags">
+                                        <span class="task-tag">personal</span>
+                                        <span class="task-tag">critical</span>
+                                    </span>
+                                </div>
+                                <div class="task-edit">
+                                    edit
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="postponeSelect">
+                        <div class="selectButtons">
+                            <button class="action " id="postponeToday">Today</button>
+                            <button class="action " id="postponeTomorrow">Tomorrow</button>
+                        </div>
+                        <button class="action" id="postponeTasks">Postpone all</button>
+    
+                    </div>
+                </div>
+    
+                <div id="todayTasks">
+                    <div class="taskListHeader">
+                        <h4>today's bothers</h4>
+                        <button class="sort" data-sort="task-due hidden" type="button"></button>
+                    </div>
+                    <div id="todayTaskList">
+    
+                    </div>
+                    <button class="action" id="addTask">Add new</button>
+                </div>
+    
+            </div>
+    
+            <div id="addTask" hidden>
+                <h3>Add a task</h3>
+                <form id="addTask">
+                    <input type="text" id="taskName" placeholder="Name of a task">
+                    <input type="datetime-local" id="taskDue" placeholder="Task due">
+                    <input type="text" id="taskTags" disabled>
+                    <br>
+                    <textarea id="taskDescription" placeholder="Task description"></textarea> <br>
+                    <button type="button" id="addTaskBtn">Add a task</button>
+                    <br>
+                    <span id="customUserTags">tags go here</span>
+                </form>
+            </div>
+    
+
+    </article>
+
+</body>
+
+
+</html>
