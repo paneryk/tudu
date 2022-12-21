@@ -19,7 +19,6 @@ h4 {
 //ASIDE + NAV
 
 aside {
-
     width: 30vw;
     height: 100vh;
     background-color: #FFF;
@@ -27,6 +26,7 @@ aside {
     display: flex;
     flex-flow: column;
     align-items: flex-end;
+    
 
     &>header {
         background-color: #FCFCFC;
@@ -108,6 +108,8 @@ ul.nav>li {
     padding-top: 0;
 }
 
+
+
 // HEADER
 
 header {
@@ -120,11 +122,99 @@ header {
 }
 
 #logo {
+    width: 180px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 5px;
+    & span {
     font-family: 'Charter', sans-serif;
     font-size: 40px;
     font-weight: 600;
-    width: 180px;
+    }
+
+    & button {
+        flex-grow: 0;
+    }
 }
+
+#header-wrapper {
+    padding: 0 45px;
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#welcome-message {
+    display: flex;
+    align-items: center;
+}
+
+.welcome-user-message {
+    font-size: 14px;
+
+    & .user-name {
+        font-weight: 600;
+    }
+}
+
+img.user-avatar {
+    width: 40px;
+    height: 40px;
+    margin-left: 10px;
+    flex-shrink: 0;
+    opacity: .8;
+    cursor: pointer;
+
+    &:hover {
+        opacity: 1;
+        
+    }
+}
+
+
+
+#expand-menu {
+    display: none;
+    background-image: url(./dist/pics/menu-expand.svg);
+    background-repeat: no-repeat;
+    background-color: transparent;
+    border: none;
+    background-size: 20px 20px;
+    background-position: center;
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+    border-radius: 45px;
+
+    &:hover {
+        border: 1px solid #efefef;
+        background-color: #f8f8f8;
+    }
+}
+
+#collapse-menu {
+    display: none;
+    background-image: url(./dist/pics/menu-collapse.svg);
+    background-repeat: no-repeat;
+    background-color: transparent;
+    border: none;
+    background-size: 20px 20px;
+    background-position: center;
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+    border-radius: 45px;
+
+    &:hover {
+        border: 1px solid #efefef;
+        background-color: #f8f8f8;
+    }
+}
+
+
 
 // DASHBOARD BODY
 
@@ -132,7 +222,13 @@ article {
     width: 70vw;
     height: 100vh;
     background-color: #FCFCFC;
+    transition: 0.1s ease-in;
+
+    &.darken {
+        filter: brightness(0.95);
+    }
 }
+
 
 @task-bg: #fff;
 @border: #EFEFEF;
@@ -144,6 +240,7 @@ article {
     min-width: min(80%, 700px);
     max-width: 800px;
     background-color: #FCFCFC;
+    
 }
 
 #dashboardHeader {
@@ -278,19 +375,37 @@ button.action {
 
 }
 
-.postponeSelect {
-    position: relative;
-}
+// ASIDE + NAV MEDIA QUERIES
+@media (max-width: 900px) {
+    aside {
+        position: absolute;
+        left: 0;
+        transform: translateX(-30vw);
+        transition: 0.1s ease-in;
+        z-index: 3;
 
-.selectButtons {
-    position: absolute;
-    display: inline-block;
-}
-
-button#postponeToday,
-button#postponeTomorrow {
-    &.invisible {
-        visibility: hidden;
-        z-index: -2;
+        &.expand {
+            transform: translateX(0);
+        }
     }
+    article {
+        min-width: 100%;
+        max-width: 100%;
+    }
+    #dashboardContainer,
+    #header-wrapper {
+        padding: 0 15px;
+        min-width: 100%;
+        max-width: 100%;
+    }
+    #dashboardContainer {
+        padding-top: 25px;
+    }
+    #expand-menu {
+        display: block;
+    }
+    #collapse-menu {
+        display: block;
+    }
+    
 }
