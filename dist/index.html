@@ -17,10 +17,10 @@
             <div id="logo">
                 <span>tudu.</span>
                 <button id="collapse-menu">
-                
+
                 </button>
             </div>
-            
+
         </header>
         <nav>
             <div id="nav-pages">
@@ -58,14 +58,14 @@
             <div id="header-wrapper">
                 <div class="expand-menu">
                     <button id="expand-menu">
-                        
+
                     </button>
                 </div>
                 <div id="welcome-message">
                     <span class="welcome-user-message">Good morning, <span class="user-name">Eryk</span></span>
-                    <span class="user-avatar"><img class="user-avatar"/></span>
+                    <span class="user-avatar"><img class="user-avatar" /></span>
                 </div>
-                
+
             </div>
         </header>
 
@@ -84,9 +84,11 @@
                 <div id="overdueTaskList">
 
                     <ul class="list taskList">
-                        <li class="critical-task">
+                        <li class="individual-task critical-task">
                             <div class="task-content">
-                                <input type="checkbox" class="task-status">
+                                <label class="task-status-label">
+                                    <input type="checkbox" class="task-status">
+                                </label>
                                 <span class="task-title">Odebrać Bubę</span>
                                 <span class="after-title-bullet">∙</span>
                                 <span class="task-due hidden"></span>
@@ -97,25 +99,27 @@
                                     <span class="task-tag">personal</span>
                                     <span class="task-tag">critical</span>
                                 </span>
+
                             </div>
                         </li>
-                        <li>
+                        <li class="individual-task">
                             <div class="task-content">
-                                <input type="checkbox" class="task-status">
+                                <label class="task-status-label">
+                                    <input type="checkbox" class="task-status">
+                                </label>
                                 <span class="task-title">Odebrać Bubę</span>
                                 <span class="after-title-bullet">∙</span>
                                 <span class="task-due hidden"></span>
                                 <span class="task-due visible">yesterday</span>
                             </div>
-                            <div class="task-tags">
+                            <div class="task-tags edit">
                                 <span class="task-tags">
                                     <span class="task-tag">personal</span>
                                     <span class="task-tag">critical</span>
                                 </span>
+
                             </div>
-                            <div class="task-edit">
-                                edit
-                            </div>
+
                         </li>
                     </ul>
                 </div>
