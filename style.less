@@ -267,20 +267,23 @@ button.sort {
 }
 
 ul.taskList {
+    max-width: 100%;
     list-style: none;
     display: flex;
     flex-direction: column;
     font-size: .8rem;
     cursor: pointer;
+    overflow: hidden;
 
     & div {
         display: flex;
         align-items: center;
         gap: 6px;
+        
     }
 
     & li {
-        width: 100%;
+        max-width: 100%;
         height: 32px;
         margin-bottom: 10px;
         background-color: @task-bg;
@@ -290,10 +293,36 @@ ul.taskList {
         align-items: center;
         padding-right: 10px;
         justify-content: space-between;
+        
 
         &.completed {
             opacity: 35%;
             filter: grayscale(100%);
+        }
+
+        & .task-tags {
+            min-width: fit-content;
+            max-width: 30%;
+            overflow: none;
+        }
+
+        & .task-content {
+            
+
+            & .task-title,
+            & .task-due + .visible {
+                background-color: transparent;
+                border: none;
+                cursor: pointer;
+            }
+        }
+
+        & .collapse-task {
+            width: 13px;
+            height: 13px;
+            position: absolute;
+            visibility: hidden;
+            pointer-events: none;
         }
 
         & .task-status-label {
@@ -312,6 +341,7 @@ ul.taskList {
             & .task-status {
                 cursor: pointer;
             }
+
         }
 
         &.animateCompletion {
@@ -332,17 +362,61 @@ ul.taskList {
 
     li.expanded-task {
         flex-flow: column;
-        height: auto;
+        animation-name: expandTask;
+        animation-duration: .4s;
+        animation-fill-mode: forwards;
         align-items: flex-start;
-        padding: 8px 15px;
+        padding: 8px 30px;
         cursor: auto;
-
+        position: relative;
+        
+        & div {
+            gap: 0;
+        }
+        
+       
         & .task-content {
             flex-flow: column;
+            align-items: flex-start;
+            padding-left: 1em;
+            max-width: 100%;
 
             & .task-status,
-            & .after-title-bullet {
-                display: none;
+            & .after-title-bullet,
+            & .task-status-label {
+                position: absolute;
+                visibility: hidden;
+            }
+
+            & .task-title {
+                max-width: 100%;
+                padding: 5px 5px;
+                font-weight: 600;
+                border: 1px solid #00000020;
+                border-radius: 5px;
+                cursor: text;
+            }
+
+            & .collapse-task {
+                width: 15px;
+                height: 15px;
+                position: absolute;
+                left: 10px;
+                top: 10px;
+                visibility: visible;
+                padding: 1em;
+                background-color: transparent;
+                border: none;
+                border-radius: 100%;
+                background-image: url(./dist/pics/tick.svg);
+                background-size: 100% 100%;
+                background-repeat: no-repeat;
+                cursor: pointer;
+                filter: opacity(50%);
+                pointer-events: auto;
+                &:hover {
+                   filter: opacity(90%);
+                }
             }
         }
     }
@@ -416,9 +490,10 @@ button.action {
 
 @media (max-width: 900px) {
     aside {
+        width: 220px;
         position: absolute;
         left: 0;
-        transform: translateX(-30vw);
+        transform: translateX(-220px);
         transition: 0.1s ease-in;
         z-index: 3;
 
@@ -453,6 +528,30 @@ button.action {
 
 }
 
+// on mobile screens
+@media (max-width: 450px) {
+    
+    .task-tags {
+        display: none;
+    }
+    .task-content {
+        max-width: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        position: relative;
+    }
+    .after-title-bullet {
+        display: none;
+    }
+
+    .task-due.visible {
+        position: absolute;
+        right: 10px;
+    }
+}
+
 // ANIMATION
 
 @keyframes completeTask {
@@ -470,7 +569,20 @@ button.action {
         margin: 0;
         height: 0;
         display: none;
-        transform: translateX(80vw);
+        transform: translateX(150vw);
         border: 0;
+    }
+}
+@keyframes expandTask {
+    0% {
+        height: 32px;
+    }
+
+    90% {
+        height: 85px;
+    }
+
+    100% {
+        height: auto;
     }
 }
