@@ -278,7 +278,7 @@ ul.taskList {
         display: flex;
         align-items: center;
         gap: 6px;
-        
+
     }
 
     & li {
@@ -292,7 +292,7 @@ ul.taskList {
         align-items: center;
         padding-right: 10px;
         justify-content: space-between;
-        
+
 
         &.completed {
             opacity: 35%;
@@ -301,15 +301,15 @@ ul.taskList {
 
         & .task-tags {
             min-width: fit-content;
-            max-width: 30%;
-            overflow: none;
+            max-width: 25%;
+            overflow: hidden;
         }
 
         & .task-content {
-            
+            max-width: 60%;
 
             & .task-title,
-            & .task-due + .visible {
+            & .task-due+.visible {
                 background-color: transparent;
                 border: none;
                 cursor: pointer;
@@ -368,12 +368,12 @@ ul.taskList {
         padding: 8px 30px;
         cursor: auto;
         position: relative;
-        
+
         & div {
             gap: 0;
         }
-        
-       
+
+
         & .task-content {
             flex-flow: column;
             align-items: flex-start;
@@ -413,8 +413,9 @@ ul.taskList {
                 cursor: pointer;
                 filter: opacity(50%);
                 pointer-events: auto;
+
                 &:hover {
-                   filter: opacity(90%);
+                    filter: opacity(90%);
                 }
             }
         }
@@ -529,25 +530,26 @@ button.action {
 
 // on mobile screens
 @media (max-width: 450px) {
-    
-    .task-tags {
-        display: none;
-    }
-    .task-content {
-        max-width: 100%;
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-        position: relative;
-    }
-    .after-title-bullet {
-        display: none;
-    }
+    ul.taskList {
 
-    .task-due.visible {
-        position: absolute;
-        right: 10px;
+        & li {
+            flex-direction: column;
+            height: fit-content;
+
+            align-items: flex-start;
+
+            & .task-tags {
+                display: none;
+                margin-left: 2em;
+                padding-bottom: .5em;
+            }
+
+            & .task-content {
+                max-width: 100%;
+            }
+        }
+
+
     }
 }
 
@@ -572,6 +574,7 @@ button.action {
         border: 0;
     }
 }
+
 @keyframes expandTask {
     0% {
         height: 32px;
