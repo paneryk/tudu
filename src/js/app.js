@@ -2,19 +2,6 @@ import party from "party-js";
 import { Dashboard } from "./dashboard";
 import moment from "moment";
 
-// selecting DOM elements
-const expandMenuButton = document.querySelector("#expand-menu");
-const collapseMenuButton = document.querySelector("#collapse-menu");
-const asideContainer = document.querySelector("aside");
-const dashboardContainer = document.querySelector("#dashboardContainer");
-const articleContainer = document.querySelector("article");
-const individualTasks = document.querySelectorAll(".individual-task");
-const taskInputFields = document.querySelectorAll(
-  ".task-title, .task-due.visible"
-);
-const welcomeUserMessageSpan = document.querySelector(".welcome-user-message");
-const avatarPlaceholder = document.querySelector("img.user-avatar");
-
 export class App extends Dashboard {
   constructor() {
     super();
@@ -34,6 +21,10 @@ export class App extends Dashboard {
     // display greeting and user avatar
     this._displayGreeting();
     this._displayAvatar();
+
+    // render number of today and all tasks for nav
+    this._displayNumberOfAllTasks();
+    this._displayNumberOfTodayTasks();
   }
 
   static _adjustInputsWidth() {
@@ -117,4 +108,29 @@ export class App extends Dashboard {
       this.querySelector(".task-title").style.width = "100%";
     }
   }
+
+  _displayNumberOfAllTasks() {
+    allTasksNumber.textContent = this.tasks.length;
+  }
+
+  _displayNumberOfTodayTasks() {
+    todayTasksNumber.textContent = this.tasks.filter(task => 
+      task.due === this.todayDate).length;
+  }
+
 }
+
+// selecting DOM elements
+const expandMenuButton = document.querySelector("#expand-menu");
+const collapseMenuButton = document.querySelector("#collapse-menu");
+const asideContainer = document.querySelector("aside");
+const dashboardContainer = document.querySelector("#dashboardContainer");
+const articleContainer = document.querySelector("article");
+const individualTasks = document.querySelectorAll(".individual-task");
+const taskInputFields = document.querySelectorAll(
+  ".task-title, .task-due.visible"
+);
+const welcomeUserMessageSpan = document.querySelector(".welcome-user-message");
+const avatarPlaceholder = document.querySelector("img.user-avatar");
+const todayTasksNumber = document.querySelector('.today-tasks-number');
+const allTasksNumber = document.querySelector('.all-tasks-number');
