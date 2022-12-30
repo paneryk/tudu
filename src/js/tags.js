@@ -16,4 +16,12 @@ export class Tags extends Dashboard {
             if (tag === 'critical') liElement.classList.add('critical');
         }
     }
+
+    renderTaskTagList(tagsArray) {
+        let template = '';
+        for (const tag of tagsArray) {
+            template += `<span class="task-tag">${tag}</span>`
+        }
+        return template;
+    }
 }

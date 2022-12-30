@@ -15,13 +15,14 @@ function createInitialTags() {
 
 function createInitialTasks() {
   const initialTasks = [];
-  // create 5 initial tasks
+  // create 6 initial tasks
   const taskNames = [
     "Pick up Buba from Mat and Julie",
     "Sign up for a gym",
     "Make a money transfer to a landlord",
     "Call grandma for her birthday",
     "Sign up for snowboard equipment tests",
+    "Go for shopping",
   ];
   const dueDates = [
     moment().format("YYYY MM DD"),
@@ -29,6 +30,7 @@ function createInitialTasks() {
     moment().format("YYYY MM DD"),
     moment().subtract(1, "days").format("YYYY MM DD"),
     moment().subtract(1, "days").format("YYYY MM DD"),
+    moment().subtract(1, "days").format("YYYY MM DD")
   ];
   const assignedTags = [
     ["critical", "personal"],
@@ -36,9 +38,10 @@ function createInitialTasks() {
     ["personal", "regular"],
     ["critical", "personal"],
     ["work", "health", "regular"],
+    ["personal", "regular"]
   ];
 
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 6; i++) {
     initialTasks.push({
       name: taskNames[i],
       due: dueDates[i],
