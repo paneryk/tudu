@@ -11,18 +11,26 @@ export class Dashboard {
 
   constructor() {
     this.todayDate = this._getTodayDate();
-    this._getUserData();
+    this._requestLocalStorage();
   }
 
   _getTodayDate() {
     return moment().format("YYYY MM DD");
   }
 
-  _getUserData() {
-    this.userid = userData.userid;
-    this.username = userData.username;
-    this.avatarUrl = userData.avatarUrl;
-    this.tasks = userData.tasks;
-    this.tags = userData.tags;
+  _requestLocalStorage() {
+    if (!!localStorage.getItem('tuduLocalData')) this._getUserData(JSON.parse(localStorage.getItem('tuduLocalData')))
+    else {
+      this._getUserData(userData)
+      localStorage.setItem('tuduLocalData', JSON.stringify(userData));
+    }
+  }
+
+  _getUserData(data) {
+    this.userid = data.userid;
+    this.username = data.username;
+    this.avatarUrl = data.avatarUrl;
+    this.tasks = data.tasks;
+    this.tags = data.tags;
   }
 }

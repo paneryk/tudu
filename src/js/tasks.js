@@ -3,6 +3,17 @@ import moment from "moment";
 import { Tags } from "./tags";
 import party from "party-js";
 
+// Customize moment.calendar formatting
+moment.updateLocale("en", {
+  calendar: {
+    lastDay: "[yesterday]",
+    sameDay: "[today]",
+    lastWeek: "last dddd ",
+    sameElse: "L",
+  },
+});
+
+
 export class Tasks extends Dashboard {
   constructor() {
     super();
@@ -15,7 +26,7 @@ export class Tasks extends Dashboard {
       ".task-title, .task-due.visible"
     );
     taskInputFields.forEach(
-      (input) => (input.style.width = `${input.value.length}ch`)
+      (input) => (input.style.width = `${input.value.length}rem`)
     );
   }
 
@@ -35,12 +46,12 @@ export class Tasks extends Dashboard {
                     <label class="task-status-label">
                         <input type="checkbox" class="task-status">
                     </label>
-                    <input class="task-title" value="${task.name}"></input>
+                    <span class="task-title" contenteditable="true">${task.name}</span>
                     <span class="after-title-bullet">∙</span>
                     <span class="task-due hidden"></span>
-                    <input class="task-due visible" value="${moment(
+                    <span class="task-due visible">${moment(
                       task.due
-                    ).calendar(this.todayDate, "YYYY MM DD")}"></input>
+                    ).calendar(this.todayDate, "YYYY MM DD")}</span>
                 </div>
                 <div class="task-tags">
                     <span class="task-tags">
@@ -49,9 +60,9 @@ export class Tasks extends Dashboard {
                 </div>`;
       overdueTaskList.append(liElement);
       liElement.addEventListener("click", this._taskClickHandler);
-      liElement.addEventListener("input", Tasks._adjustInputsWidth);
+      /* liElement.addEventListener("input", Tasks._adjustInputsWidth); */
     }
-    Tasks._adjustInputsWidth();
+    /* Tasks._adjustInputsWidth(); */
   }
 
   _taskClickHandler(event) {
@@ -77,29 +88,20 @@ export class Tasks extends Dashboard {
     // Handling task container onclick collapse
     else if (ev.className === "collapse-task") {
       this.classList.remove("expanded-task");
-      this.querySelector(".task-title").addEventListener(
+      /* this.querySelector(".task-title").addEventListener(
         "input",
         Tasks._adjustInputsWidth
       );
-      Tasks._adjustInputsWidth();
+      Tasks._adjustInputsWidth(); */
     }
     // Handling task container onclick expand for edit
     else {
       this.classList.add("expanded-task");
-      Tasks._adjustInputsWidth();
+      /* Tasks._adjustInputsWidth(); */
     }
   }
 }
 
-// Customize moment.calendar formatting
-moment.updateLocale("en", {
-  calendar: {
-    lastDay: "[yesterday]",
-    sameDay: "[today]",
-    lastWeek: "last dddd ",
-    sameElse: "L",
-  },
-});
 
 // Select DOM elements
 const overdueTaskList = document.querySelector("#overdueTaskList ul");

@@ -16,6 +16,10 @@ h4 {
     font-weight: 500;
 }
 
+[contenteditable=true] br{
+    display:none;
+}
+
 //ASIDE + NAV
 
 aside {
@@ -292,7 +296,7 @@ ul.taskList {
         align-items: center;
         padding-right: 10px;
         justify-content: space-between;
-        transition: all 0.2s, padding-left 0s; 
+        transition: all 0.1s, padding-left 0s; 
 
         &.completed {
             opacity: 35%;
@@ -313,6 +317,10 @@ ul.taskList {
                 background-color: transparent;
                 border: none;
                 cursor: pointer;
+                pointer-events: none;
+            }
+            & .task-title {
+                font-weight: 400;
             }
         }
 
@@ -392,6 +400,11 @@ ul.taskList {
                 border: 1px solid #00000020;
                 border-radius: 5px;
                 cursor: text;
+            }
+
+            & .task-title,
+            & .task-due+.visible {
+                pointer-events: all;
             }
 
             & .collapse-task {
