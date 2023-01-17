@@ -1,8 +1,3 @@
-import { App } from "./app";
-import { Tags } from "./tags";
-import { Tasks } from "./tasks";
+import {Controller} from "./Controller.js"
 
-
-const tasks = new Tasks();
-tasks.displayOverdueTaskList();
-const app = new App();
+const tasks = new Controller();

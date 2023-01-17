@@ -1,42 +1,45 @@
-import party from "party-js";
-import { Dashboard } from "./dashboard";
 import moment from "moment";
 
-export class App extends Dashboard {
+export class DashboardView {
   constructor() {
-    super();
     // Attach listeners
     expandMenuButton.addEventListener("click", this._expandMenu.bind(this));
     collapseMenuButton.addEventListener("click", this._collapseMenu.bind(this));
-
-    // Display greeting and user avatar
-    this._displayGreeting();
-    this._displayAvatar();
-
-    // Render today and all tasks number for nav
-    this._displayNumberOfAllTasks();
-    this._displayNumberOfTodayTasks();
   }
 
-  _displayGreeting() {
+  displayGreeting(username) {
     const hour = moment().hour();
     let greetingMoment;
-    if (hour > 16) {
-      greetingMoment = "Good evening";
-    } else if (hour > 11) {
-      greetingMoment = "Good afternoon";
-    } else {
-      greetingMoment = "Good morning";
-    }
+    if (hour > 16) greetingMoment = "Good evening";
+    else if (hour > 11) greetingMoment = "Good afternoon";
+    else greetingMoment = "Good morning";
+
     let greetingTemplate = `
-            ${greetingMoment}, 
-            <span class="user-name">${this.username}</span>
-        `;
+                ${greetingMoment}, 
+                <span class="user-name">${username}</span>
+            `;
     welcomeUserMessageSpan.innerHTML = greetingTemplate;
   }
 
-  _displayAvatar() {
-    avatarPlaceholder.src = this.avatarUrl;
+  displayAvatar(avatarUrl) {
+    avatarPlaceholder.src = avatarUrl;
+  }
+
+  displayNumberOfAllTasks(totalTaskNumber) {
+    allTasksNumber.textContent = totalTaskNumber;
+  }
+
+  displayNumberOfTodayTasks(todayTaskNumber) {
+    todayTasksNumber.textContent = todayTaskNumber;
+  }
+
+  renderTagListForNav(tags) {
+    for (const tag of tags) {
+      const liElement = document.createElement("li");
+      tagsListNav.append(liElement);
+      liElement.textContent = tag;
+      if (tag === "critical") liElement.classList.add("critical");
+    }
   }
 
   _expandMenu() {
@@ -50,16 +53,6 @@ export class App extends Dashboard {
     dashboardContainer.removeEventListener("click", this._collapseMenu);
     articleContainer.classList.remove("darken");
   }
-
-  _displayNumberOfAllTasks() {
-    allTasksNumber.textContent = this.tasks.length;
-  }
-
-  _displayNumberOfTodayTasks() {
-    todayTasksNumber.textContent = this.tasks.filter(
-      (task) => task.due === this.todayDate
-    ).length;
-  }
 }
 
 // Selecting DOM elements
@@ -72,3 +65,4 @@ const welcomeUserMessageSpan = document.querySelector(".welcome-user-message");
 const avatarPlaceholder = document.querySelector("img.user-avatar");
 const todayTasksNumber = document.querySelector(".today-tasks-number");
 const allTasksNumber = document.querySelector(".all-tasks-number");
+const tagsListNav = document.querySelector(".nav.tags");
